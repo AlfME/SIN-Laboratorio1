@@ -1,0 +1,97 @@
+##### 4-queens problem
+##########################################
+###   PARAMETROS  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search :
+#	bt,
+#	fc,
+	rfla,
+#	all_solutions
+	first_solution 
+;
+\static_labeling_order  :
+	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+;
+\value_order: 
+	bottom_first;
+#	top_first;
+#	mid_first;
+#
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+###       VARIABLES        ###
+\vi : T0,T1,T2,T3,T4 0..4 ;
+
+###      CONTRAINTES       ###
+
+\cc: testemony_one
+	\if	\ci: c1, T1 = 0;
+	\then	\ci: c2, T2 != 1;
+;
+
+\cc: testemony_two
+        \if     \ci: c2, T0 = 2;
+        \then   \ci: c3, T1 != 3;
+;
+
+\cc: testemony_three
+        \if     \ci: c4, T2 = 3;
+        \then   \ci: c5, T4 != 2;
+;
+
+\cc: testemony_four
+        \if     \ci: c6, T1 = 0;
+        \then   \ci: c7, T3 != 4;
+;
+
+\cc: testemony_five
+        \if     \ci: c8, T3 = 4;
+        \then   \ci: c9, T0 != 2;
+;
+
+\cc: testemony_one_rev
+        \if     \ci: c1, T1 != 0;
+        \then   \ci: c2, T2 = 1;
+;
+
+\cc: testemony_two_rev
+        \if     \ci: c2, T0 != 2;
+        \then   \ci: c3, T1 = 3;
+;
+
+\cc: testemony_three_rev
+        \if     \ci: c4, T2 != 3;
+        \then   \ci: c5, T4 = 2;
+;
+
+\cc: testemony_four_rev
+        \if     \ci: c6, T1 != 0;
+        \then   \ci: c7, T3 = 4;
+;
+
+\cc: testemony_five_rev
+        \if     \ci: c8, T3 != 4;
+        \then   \ci: c9, T0 = 2;
+;
+
+
+\cim : ct1 , <>(T0,T1,T2,T3,T4);
