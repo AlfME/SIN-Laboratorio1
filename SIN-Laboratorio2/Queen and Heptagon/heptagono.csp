@@ -1,0 +1,55 @@
+##### Problema del Heptagono 
+##########################################
+###   PARAMETROS  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search :
+#	bt,
+#	fc,
+	rfla,
+#	all_solutions
+#	first_solution 
+                first_solutions 10
+;
+#\static_labeling_order  :
+#	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+;
+\value_order: 
+#	bottom_first;
+	top_first;
+#	mid_first;
+#
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+###       VARIABLES        ###
+\vi : N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14 1..14 ;
+
+###      CONTRAINTES       ###
+\ci : rd1 ,  N1 + N2 + N3 = N3 + N4 + N5;
+\ci : rd2, N3 + N4 + N5 = N5 + N6 + N7;
+\ci : rd3 , N5 + N6 + N7 = N7 + N8 + N9;
+\ci : rd4, N7 + N8 + N9 = N9 + N10 + N11;
+\ci : rd5 , N9 + N10 + N11 = N11 + N12 + N13;
+\ci : rd6 , N11 + N12 + N13 = N13 + N14 + N1;
+\ci : rd7 , N13 + N14 + N1 = N1 + N2 + N3;
+
+\cim: rd5,  <>(N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14);
+\cim: rd5,  <>(N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14);
