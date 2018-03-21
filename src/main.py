@@ -18,7 +18,10 @@ ambulances = {"A1": {"x":hospitals["Antiguo Hospital"]["x"],			"y":hospitals["An
 
 victims = {"V1" :	{"x":39.4815278,	"y":-0.3466096, "g": 10,	"treated":False},
 	"V2" :		{"x":39.4706462,	"y":-0.3762518, "g": 30,	"treated":False},
-	"V3" :		{"x":39.4691474,	"y":-0.3262902, "g": 25,	"treated":False}	
+	"V3" :		{"x":39.4691474,	"y":-0.3262902, "g": 25,	"treated":False},	
+	"V4" :		{"x":39.4700204,	"y":-0.3511703, "g": 15,	"treated":False},
+	"V5" :		{"x":39.4604171,	"y":-0.3826458, "g": 20,	"treated":False},
+	"V6" :		{"x":39.4636212,	"y":-0.3937612, "g": 15,	"treated":False}
 	}
 
 
