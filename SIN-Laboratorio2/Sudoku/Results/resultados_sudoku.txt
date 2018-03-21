@@ -1,0 +1,24 @@
+C:\Users\Nils\Desktop\SIN Trabajo2\conflex alumnos>conflex.exe sudoku.csp
+
+Lecture du fichier... "sudoku.csp"
+  ... OK
+
+###### Filtering "superficiel" (AC pour les variables entieres) ...
+
+###### Fin filtering du CSP  ######
+
+############  Resolution par Real Full Look Ahead  ############
+
+  - Recherche de la premiere solution satisfaisante au moins Ó 0.090
+  - Ordre d'examen des valeurs numÚriques : de la plus grande Ó la plus petite.
+----------------------------------------------------
+
+SOLUTION No 1
+   F11 = 8   F12 = 6   F13 = 9   F14 = 4   F15 = 1   F16 = 2   F17 = 3   F18 = 5   F19 = 7   F21 = 5   F22 = 2   F23 = 3   F24 = 6   F25 = 7   F26 = 8   F27 = 1   F28 = 9   F29 = 4   F31 = 1   F32 = 4   F33 = 7   F34 = 5   F35 = 9   F36 = 3   F37 = 2   F38 = 8   F39 = 6   F41 = 9   F42 = 5   F43 = 2   F44 = 3   F45 = 6   F46 = 7   F47 = 8   F48 = 4   F49 = 1   F51 = 3   F52 = 1   F53 = 6   F54 = 8   F55 = 4   F56 = 5   F57 = 7   F58 = 2   F59 = 9   F61 = 7   F62 = 8   F63 = 4   F64 = 1   F65 = 2   F66 = 9   F67 = 6   F68 = 3   F69 = 5   F71 = 2   F72 = 3   F73 = 1   F74 = 7   F75 = 5   F76 = 4   F77 = 9   F78 = 6   F79 = 8   F81 = 4   F82 = 7   F83 = 8   F84 = 9   F85 = 3   F86 = 6   F87 = 5   F88 = 1   F89 = 2   F91 = 6   F92 = 9   F93 = 5   F94 = 2   F95 = 8   F96 = 1   F97 = 4   F98 = 7   F99 = 3  sat = 1.000 .
+  (trouvee apres 4264 instanciations et 37174 tests de contraintes)
+
+############   Fin du Real Full Look Ahead ############
+   Nombre de solution(s) trouvee(s) : 1
+   Nb d'instanciations : 4264, Nb de tests de contraintes : 37174
+
+durÚe de la rÚsolution : 0'04''29

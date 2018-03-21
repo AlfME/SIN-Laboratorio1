@@ -1,0 +1,135 @@
+##### Grupo 6 - Alf Martin Eggen y Nils Dycke
+#####
+##### 2.1) Problema del Sudoku 
+
+##########################################
+###   PARAMETROS  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search :
+#	bt,
+#	fc,
+	rfla,
+#	all_solutions
+	first_solution 
+;
+#\static_labeling_order  :
+#	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+;
+\value_order: 
+#	bottom_first;
+	top_first;
+#	mid_first;
+#
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+
+##############################
+###       VARIABLES        ###
+############################## 
+
+###       VARIABLES        ###
+	  #1   #2   #3   	#4   #5   #6   		#7   #8   #9
+\vi : F11, F12, F13, 	F14, F15, F16,		F17, F18, F19	1..9;
+\vi : F21, F22, F23, 	F24, F25, F26, 		F27, F28, F29	1..9;
+\vi : F31, F32, F33, 	F34, F35, F36, 		F37, F38, F39	1..9;
+#
+\vi : F41, F42, F43,	F44, F45, F46, 		F47, F48, F49	1..9;
+\vi : F51, F52, F53,	F54, F55, F56, 		F57, F58, F59	1..9;
+\vi : F61, F62, F63,	F64, F65, F66, 		F67, F68, F69	1..9;
+#
+\vi : F71, F72, F73,	F74, F75, F76, 		F77, F78, F79	1..9;
+\vi : F81, F82, F83,	F84, F85, F86, 		F87, F88, F89	1..9;
+\vi : F91, F92, F93,	F94, F95, F96, 		F97, F98, F99	1..9;
+
+###      CONTRAINTES       ###
+### Some fields are already given and can be manually specified here
+\ci : hard1, F11 = 8;	\ci : hard4, F24 = 6;	\ci : hard6, F37 = 2;
+\ci : hard2, F23 = 3;	\ci : hard5, F35 = 9;
+\ci : hard3, F32 = 4;
+#
+\ci : hard7, F42 = 5;	\ci : hard8, F46 = 7;	\ci : hard12,F57 = 7;
+						\ci : hard9, F55 = 4;	\ci : hard13,F68 = 3;
+						\ci : hard10,F56 = 5;	
+						\ci : hard11,F64 = 1;
+#
+\ci : hard14,F73 = 1;	\ci : hard17,F84 = 9;	\ci : hard18,F78 = 6;
+\ci : hard15,F83 = 8;							\ci : hard19,F79 = 8;
+\ci : hard16,F92 = 9;							\ci : hard20,F88 = 1;
+												\ci : hard21,F97 = 4;
+												
+### The rows contain only different values
+\cim : r1, <>(F11, F12, F13,	 F14, F15, F16,	 F17, F18, F19);
+\cim : r2, <>(F21, F22, F23,	 F24, F25, F26,	 F27, F28, F29);
+\cim : r3, <>(F31, F32, F33,	 F34, F35, F36,	 F37, F38, F39);
+#
+\cim : r4, <>(F41, F42, F43,	 F44, F45, F46,	 F47, F48, F49);
+\cim : r5, <>(F51, F52, F53,	 F54, F55, F56,	 F57, F58, F59);
+\cim : r6, <>(F61, F62, F63,	 F64, F65, F66,	 F67, F68, F69);
+#
+\cim : r7, <>(F71, F72, F73,	 F74, F75, F76,	 F77, F78, F79);
+\cim : r8, <>(F81, F82, F83,	 F84, F85, F86,	 F87, F88, F89);
+\cim : r9, <>(F91, F92, F93,	 F94, F95, F96,	 F97, F98, F99);
+
+### The columns contain only different values
+\cim : c1, <>(F11, F21, F31,	F41, F51, F61,	F71, F81, F91);
+\cim : c2, <>(F12, F22, F32,	F42, F52, F62,	F72, F82, F92);
+\cim : c3, <>(F13, F23, F33,	F43, F53, F63,	F73, F83, F93);
+#
+\cim : c4, <>(F14, F24, F34,	F44, F54, F64,	F74, F84, F94);
+\cim : c5, <>(F15, F25, F35,	F45, F55, F65,	F75, F85, F95);
+\cim : c6, <>(F16, F26, F36,	F46, F56, F66,	F76, F86, F96);
+#
+\cim : c7, <>(F17, F27, F37,	F47, F57, F67,	F77, F87, F97);
+\cim : c8, <>(F18, F28, F38,	F48, F58, F68,	F78, F88, F98);
+\cim : c9, <>(F19, F29, F39,	F49, F59, F69,	F79, F89, F99);
+
+### The squares contain only different values
+\cim : square11, <>(F11, F12, F13, 
+				    F21, F22, F23,
+				    F31, F32, F33);
+					
+\cim : square12, <>(F14, F15, F16,
+				    F24, F25, F26,
+				    F34, F35, F36);
+					
+\cim : square13, <>(F17, F18, F19,
+				    F27, F28, F29,
+				    F37, F38, F39);				   
+#
+\cim : square21, <>(F41, F42, F43, 
+				    F51, F52, F53,
+				    F61, F62, F63);
+
+\cim : square22, <>(F44, F45, F46,
+				    F54, F55, F56,
+				    F64, F65, F66);
+
+\cim : square23, <>(F47, F48, F49,
+				    F57, F58, F59,
+				    F67, F68, F69);		
+#
+\cim : square31, <>(F71, F72, F73, 
+				    F81, F82, F83,
+				    F91, F92, F93);	
+
+\cim : square32, <>(F74, F75, F76,
+				    F84, F85, F86,
+				    F94, F95, F96);		
+
+\cim : square33, <>(F77, F78, F79,
+				    F87, F88, F89,
+				    F97, F98, F99);						
