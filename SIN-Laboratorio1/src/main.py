@@ -1,6 +1,8 @@
 import pyhop
 import math
 
+without_algorithm = True;
+
 
 #############################MODEL#####################################
 hospitals = { "Antiguo Hospital":				{"x": 39.4694707,	"y": -0.3838572},
@@ -35,6 +37,11 @@ def distance(lhs, rhs):
 def choose_victim(state):
 	#tmp_list = list(p for p in state.victims.items() if p[1]["treated"] == False);
 	#return max(tmp_list, key=lamfbda x: x[1]["g"]);
+	if(without_algorithm):
+		for p in state.victims.items():
+			if(p[1]["treated"] == False):
+				return p;
+
 	most_g = 100000000;
 	for p in state.victims.items():
 		if(p[1]["treated"] == False):
