@@ -66,13 +66,16 @@ def choose_hospital(state, v):
 	return current_hospital
 
 #########################METHODS#############################
+"""
 def save_the_victims(state, goal):
+	print("STATE: ", state.num_victims);
+	
 	if (state.num_victims <= 0):
 		return [('call_success', state, goal)];
 	else:
 		return [('save_victim', state, goal), ('save_the_victims', state, goal)];
 
-
+"""
 
 #########################OPERATORS##########################
 def save_victim(state, goal):
@@ -82,22 +85,22 @@ def save_victim(state, goal):
 		current_victim = choose_victim(state);
 		current_ambulance = choose_ambulance(state, current_victim);
 		current_hospital = choose_hospital(state, current_victim);
-		return [('move_ambulance', current_ambulance, current_victim[1]["x"], current_victim[1]["y"]), ('enter_ambulance', current_ambulance, current_victim), ('move_ambulance', current_ambulance, current_hospital[1]["x"], current_hospital[1]["y"]), ('exit_ambulance', current_ambulance, current_victim)];
+		return [('move_ambulance', current_ambulance, current_victim[1]["x"], current_victim[1]["y"]), ('enter_ambulance', current_ambulance, current_victim), ('move_ambulance', current_ambulance, current_hospital[1]["x"], current_hospital[1]["y"]), ('exit_ambulance', current_ambulance, current_victim),('save_the_victims', goal)];
 
 def move_ambulance(state, a, x, y):
 	tuple = {"x":x, "y":y};
-	a[1]["t"] += distance(a[1], tuple);
-	a[1]["x"] = x;
-	a[1]["y"] = y;
+	state.ambulances[a[0]]["t"] += distance(a[1], tuple);
+	state.ambulances[a[0]]["x"] = x;
+	state.ambulances[a[0]]["y"] = y;
 	return state;
 
 def enter_ambulance(state, a, v):
-	a[1]["has_victim"] = True;
+	state.ambulances[a[0]]["has_victim"] = True;
 	return state;
 
 def exit_ambulance(state, a, v):
-	v[1]["treated"] = True;
-	a[1]["has_victim"] = False;
+	state.victims[v[0]]["treated"] = True;
+	state.ambulances[a[0]]["has_victim"] = False;
 	state.num_victims -= 1;
 	return state;
 
