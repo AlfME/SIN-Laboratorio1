@@ -110,6 +110,7 @@ printTable(table, 3)
         
 #get file
 inputfile = open('./Results/resultados_sudoku.txt')
+outputfile = open('./Results/verifyres.txt')
 
 #skip until solution
 for line in inputfile:
@@ -154,3 +155,5 @@ for c in raw:
 printTable(table, 3)
 
 print("The result is valid:", verifyTable(table, 3))
+
+outputfile.write("The result is valid:" + str(verifyTable(table, 3)));

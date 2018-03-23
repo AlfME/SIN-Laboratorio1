@@ -1,7 +1,7 @@
 import pyhop
 import math
 
-without_algorithm = True;
+without_algorithm = False;
 
 
 #############################MODEL#####################################
@@ -18,7 +18,7 @@ ambulances = {"A1": {"x":hospitals["Antiguo Hospital"]["x"],			"y":hospitals["An
 	      "A3": {"x": 39.4706400,						"y": -0.3780208,					"g": 5,		"has_victim":False,	"t": 0}
 	}
 
-victims = {"V1" :	{"x":39.4815278,	"y":-0.3466096, "g": 10,	"treated":False},
+victims = {"V1" :	{"x":39.4815278,	"y":-0.3466096, "g": 5,	"treated":False},
 	"V2" :		{"x":39.4706462,	"y":-0.3762518, "g": 30,	"treated":False},
 	"V3" :		{"x":39.4691474,	"y":-0.3262902, "g": 25,	"treated":False},	
 	"V4" :		{"x":39.4700204,	"y":-0.3511703, "g": 15,	"treated":False},
@@ -88,11 +88,15 @@ def save_the_victims(state, goal):
 def save_victim(state, goal):
 	if(state.num_victims <= 0):
 		return False;
-	else:
+	else:	
 		current_victim = choose_victim(state);
 		current_ambulance = choose_ambulance(state, current_victim);
 		current_hospital = choose_hospital(state, current_victim);
-		return [('move_ambulance', current_ambulance, current_victim[1]["x"], current_victim[1]["y"]), ('enter_ambulance', current_ambulance, current_victim), ('move_ambulance', current_ambulance, current_hospital[1]["x"], current_hospital[1]["y"]), ('exit_ambulance', current_ambulance, current_victim),('save_the_victims', goal)];
+		
+		if(current_ambulance == 0):
+			return False;
+		else:
+			return [('move_ambulance', current_ambulance, current_victim[1]["x"], current_victim[1]["y"]), ('enter_ambulance', current_ambulance, current_victim), ('move_ambulance', current_ambulance, current_hospital[1]["x"], current_hospital[1]["y"]), ('exit_ambulance', current_ambulance, current_victim),('save_the_victims', goal)];
 
 def move_ambulance(state, a, x, y):
 	tuple = {"x":x, "y":y};
@@ -114,9 +118,9 @@ def exit_ambulance(state, a, v):
 def call_success(state, goal):
 	for a in state.ambulances.items():
 		print(a[0], ": ", a[1]["t"]);
-	print("Success!!");
-
+	
 	if(state.num_victims <= 0):
+		print("Success!!");
 		return [];
 	else:
 		return False;

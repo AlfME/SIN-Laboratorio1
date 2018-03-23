@@ -9,9 +9,9 @@
 \alpha = 0.1;
 \filtering : f ;
 \search :
-#	bt,
+	bt,
 #	fc,
-	rfla,
+#	rfla,
 #	all_solutions
 	first_solution 
 ;
@@ -20,8 +20,8 @@
 #	greatest_degree
 #	smallest_domain_by_degree
 ;
-#\dynamic_labeling_order :
-#	smallest_domain 
+\dynamic_labeling_order :
+	smallest_domain 
 #	smallest_domain_by_degree
 ;
 \value_order: 
